@@ -50,7 +50,7 @@ trainer = ImagenTrainer(
     imagen = imagen,
 ).cuda()
 
-trainer.load('../saved_models/checkpoint.315000.pt')
+trainer.load('../saved_model/model.pt')
 df_test = pd.read_csv('../private/info_processed.csv')
 text = list(df_test['eng'])
 img = list(df_test['bannerImage'])
