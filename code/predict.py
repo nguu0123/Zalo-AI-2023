@@ -57,6 +57,8 @@ img = list(df_test['bannerImage'])
 batch_size = 4
 stop_unet = 2
 for i in range(0, len(text), batch_size):
+    if (i + batch_size >= len(text)):
+        batch_size = len(text) - i
     prompt = text[i: i+batch_size]
     img_name = img[i: i+batch_size]
     info_embeds, mask = t5.t5_encode_text(prompt, return_attn_mask = True, name=T5_name)
@@ -67,6 +69,8 @@ for i in range(0, len(text), batch_size):
         images[j].save('../results/submission1/' + img_name[j])
 
 for i in range(0, len(text), batch_size):
+    if (i + batch_size >= len(text)):
+        batch_size = len(text) - i
     prompt = text[i: i+batch_size]
     img_name = img[i: i+batch_size]
     info_embeds, mask = t5.t5_encode_text(prompt, return_attn_mask = True, name=T5_name)
