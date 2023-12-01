@@ -51,10 +51,10 @@ trainer = ImagenTrainer(
 ).cuda()
 
 trainer.load('../saved_model/model.pt')
-df_test = pd.read_csv('../private/info_processed.csv')
+df_test = pd.read_csv('../data/private/info_processed.csv')
 text = list(df_test['eng'])
 img = list(df_test['bannerImage'])
-batch_size = 4
+batch_size = 16
 stop_unet = 2
 for i in range(0, len(text), batch_size):
     if (i + batch_size >= len(text)):

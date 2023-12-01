@@ -20,7 +20,7 @@ def translate_vi2en(vi_texts: str) -> str:
     en_texts = tokenizer_vi2en.batch_decode(output_ids, skip_special_tokens=True)
     return en_texts
 
-df_test = pd.read_csv("../private/info.csv")
+df_test = pd.read_csv("../data/private/info.csv")
 df_test['caption'] = df_test['moreInfo'].replace(np.nan, '')
 df_test['description'] = df_test['moreInfo'].replace(np.nan, '')
 df_test['moreInfo'] = df_test['moreInfo'].replace(np.nan, '')
@@ -40,4 +40,4 @@ for i in range(0, len(text_cap), batch_size):
     trans_text = translate_vi2en(all_info)
     eng.extend(trans_text)
 df_test['eng'] = eng
-df_test.to_csv("../private/info_processed.csv")
+df_test.to_csv("../data/private/info_processed.csv")
